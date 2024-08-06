@@ -140,3 +140,5 @@ fig=go.Figure(data=clas)
 fig.write_html('after.html')  
 fig1.write_html('before.html')
 ```
+![before_kmeans](https://github.com/era011/k_means_algorithm/blob/main/newplot%20(3).png)
+![after_kmeans](https://github.com/era011/k_means_algorithm/blob/main/newplot%20(2).png)
