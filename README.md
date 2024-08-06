@@ -108,3 +108,35 @@ def kmeans(points:np.ndarray,count_classes:int,epsilon:float=.05,count_of_iterat
 
     return points
 ```
+The kmeans function gets
+* points - matrix of dimension NxM, where N is the number of points, M is the dimension of the space to which it belongs
+* count_of_classes - the number of classes to divide into
+* epsilon - for stop conditions
+* count_of_iterations - number of iterations
+returns an NxM+1 matrix, where the last column is the class labels
+
+## How to use example:
+
+```python
+coords = np.concatenate([np.random.randn(100, 3)+np.array([4, 4,4]),
+                         np.random.randn(100, 3)+np.array([4, -4, 4]),
+                         np.random.randn(100, 3)+np.array([-4, 4,4]),
+                         np.random.randn(100, 3)+np.array([-4, -4,4]),
+                         np.random.randn(100, 3)+np.array([0, 0,0])], axis=0)
+
+k=5
+
+
+coords=kmeans(coords,count_classes=k)
+
+fig1=go.Figure(data=go.Scatter3d(x=coords[:,0],y=coords[:,1],z=coords[:,2],mode='markers'))
+
+clas=[]
+for i in np.unique(coords[:,-1]):
+    dp=coords[coords[:,-1]==i]
+    clas.append(go.Scatter3d(x=dp[:,0],y=dp[:,1],z=dp[:,2],mode='markers'))
+
+fig=go.Figure(data=clas)  
+fig.write_html('after.html')  
+fig1.write_html('before.html')
+```
